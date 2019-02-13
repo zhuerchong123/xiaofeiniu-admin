@@ -6,7 +6,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 
-/* 插件全局设置*/
+/* 插件和全局对象的设置*/
 Vue.use(ElementUI);//注册ElementUI插件
 //把axios设置为所有Vue组件实例的成员属性，以后可以使用this.$axios使用异步请求功能
 Vue.prototype.$axios = axios
@@ -46,6 +46,13 @@ Vue.filter('datetime',(val)=>{
 Vue.filter('currency',(val)=>{
   //把int转换为￥xx.yy
   return '￥'+val.toFixed(2)
+})
+/* 桌台过滤器*/ 
+Vue.filter('tableStatus',(val)=>{
+  if(val==1) return '空闲';
+  else if(val==2) return '预定';
+  else if(val==3) return '占用';
+  else return '其他';
 })
 
 new Vue({
