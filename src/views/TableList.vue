@@ -22,6 +22,14 @@ export default {
             tableList:[]
         }
     },
+    mounted(){
+        var url = this.$store.state.globalSettings.apiUrl+'/admin/table';
+        this.$axios.get(url).then(({data})=>{  //数据的结构，直接取对象的data数据
+            this.tableList = data
+        }).catch((err)=>{
+            console.log(err)
+        })
+    },
     components:{
         'xfn-table':Table
     }
